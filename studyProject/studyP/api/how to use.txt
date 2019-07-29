@@ -1,0 +1,29 @@
+安装：
+	安装node
+	命令行：npm install -g json-server
+
+运行：
+	命令行：json-server db.js --middlewares middleware.js （windows下也可直接双击start.bat）
+
+访问：
+	http://localhost:3000/
+	http://localhost:3000/接口名
+
+目录结构：
+	-data
+		数据文件，该目录下的每个文件都会自动生成一个同名接口，并根据文件内容返回数据。
+		参考示例：
+			data/muyingHomeSwipeImgs.js => http://localhost:3000/muyingHomeSwipeImgs
+			data/red5/redFriRegistration.js => http://localhost:3000/redFriRegistration
+	-middlewares
+		中间层插件，该目录下的每个文件都会自动作为中间层插件，可以拦截请求，并进行逻辑处理。
+		参考示例：
+			middlewares/echo.js => http://localhost:3000/echo?param1=value1&param2=value2
+			middlewares/echo2.js => http://localhost:3000/echo2?param1=value1&param2=value2
+	-db.js
+		数据配置
+	-middleware.js
+		中间层配置
+	-start.bat
+		windows下启动脚本
+
