@@ -54,7 +54,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        loader: 'happypack/loader?id=happyBabel', //'babel-loader',
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
       },
       {
@@ -85,15 +85,15 @@ module.exports = {
         options: {
           appendTsSuffixTo: [/\.vue$/],
           transpileOnly: true,
-          getCustomTransformers: () => ({
-            before: [ tsImportPluginFactory(
-              {
-                "libraryName": "@zz-common/zz-ui",
-                "libraryDirectory": "lib",
-                "style": true
-              }
-            ) ]
-          }),
+          // getCustomTransformers: () => ({
+          //   before: [ tsImportPluginFactory(
+          //     {
+          //       "libraryName": "@zz-common/zz-ui",
+          //       "libraryDirectory": "lib",
+          //       "style": true
+          //     }
+          //   ) ]
+          // }),
           compilerOptions: {
             module: 'es2015'
           }
