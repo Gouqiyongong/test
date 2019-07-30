@@ -30,8 +30,8 @@ module.exports = {
     devtool: 'eval-source-map',
     autoOpenBrowser: false,
     assetsSubDirectory: '',
-    assetsPublicPath: '/open/ZZAntiqueToolBusiness/index.html',
-    imgPublicPath: '/open/ZZAntiqueToolBusiness/index.html',
+    assetsPublicPath: '/index.html',
+    imgPublicPath: '/index.html',
     proxyTable: {
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"

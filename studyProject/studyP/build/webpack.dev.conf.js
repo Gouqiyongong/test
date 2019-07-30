@@ -71,7 +71,7 @@ module.exports = new Promise((resolve, reject) => {
           messages: [
   ` 注意啦~更换域名了~~~`
 + `\n  port at: ${port}`
-+ `\n  run at :https://m.zhuanzhuan.com/open/ZZAntiqueToolBusiness/index.html#/{Router}`
++ `\n  run at :https://localhost:${port}/index.html#/{Router}`
 +
 `                                              
     O@@@@@@@@@@@@@@@@@@@@@@@@@O             @@@@  @@@@@@    
