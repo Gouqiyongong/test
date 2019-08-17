@@ -36,11 +36,7 @@ function updateImg(src, $li) {
     canvas.height = image.height;
     let ctx = canvas.getContext('2d');
     ctx.drawImage(image, 0, 0, image.width, image.height);
-    console.log(image)
-    console.log(image.width)
-    console.log(ctx)
     let bgBase64Data = canvas.toDataURL("image/png");
-    console.log(bgBase64Data)
     ajax(bgBase64Data).then((url) => {
       let realyUrl = randomPrefix() + url;
       let copyButton = $('<button style="margin-left: 20px;" class="copy">一键复制</button>')
@@ -76,7 +72,6 @@ function ajax(imgData) {
       }),
       //请求成功
       success : function(result) {
-          console.log(result);
           resolve(result)
       },
       //请求失败，包含具体的错误信息
@@ -124,12 +119,13 @@ function randomPrefix() {
 function toast(msg, warn) {
   let e = document.createElement("span");
   e.style.position = "fixed";
-  e.style.top = '50%';
+  e.style.top = '10%';
   e.style.left = '50%';
   e.style.padding = "5px 20px";
   e.style.borderRadius = "5px";
-  e.style.backgroundColor = warn ? 'yellow' : 'rgba(0, 0, 0, .4)';
+  e.style.backgroundColor = warn ? 'yellow' : 'rgba(0, 0, 0, .6)';
   e.style.transition = 'all .2s';
+  e.style.color = '#fff';
   e.innerHTML = msg;
   document.body.appendChild(e);
   setTimeout(() => {
