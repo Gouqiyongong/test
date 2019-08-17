@@ -24,6 +24,7 @@
   </div>
 </template>
 <script>
+import { setTimeout } from 'timers';
 export default {
   props: {
     value: {

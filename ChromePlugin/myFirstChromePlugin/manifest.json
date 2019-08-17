@@ -1,0 +1,26 @@
+{
+    "name": "测试组件",
+    "manifest_version": 2,
+    "version": "1.0",
+    "description": "练习组件",
+    "icons": {
+      "16": "icon.png",
+      "64": "icon.png",
+      "128": "icon.png"
+    },
+    "browser_action": {
+      "default_icon": "icon.png",
+      "default_title": "练习组件"
+    },
+    
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+    "homepage_url": "https://fe.zhuanspirit.com",
+    "content_scripts": [
+      {
+        "matches": ["https://tinypng.com/"],
+        "js": ["jquery.js","script.js"],
+        "run_at": "document_end",
+        "all_frames": false
+      }
+    ]
+  }
