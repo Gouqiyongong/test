@@ -36,7 +36,12 @@ function updateImg(src, $li) {
     canvas.height = image.height;
     let ctx = canvas.getContext('2d');
     ctx.drawImage(image, 0, 0, image.width, image.height);
-    let bgBase64Data = canvas.toDataURL("image/png");
+    let bgBase64Data = canvas.toDataURL("image/png", 0.5);
+    // if(getBase64ImgSzie(bgBase64Data) > 200) {
+    //   toast('图片不能大于200k', warn)
+    //   return
+    // }
+    // return
     ajax(bgBase64Data).then((url) => {
       let realyUrl = randomPrefix() + url;
       let copyButton = $('<button style="margin-left: 20px;" class="copy">一键复制</button>')
@@ -45,14 +50,20 @@ function updateImg(src, $li) {
       })
       $li.append(copyButton);
       $li.append(`<span style="margin-left: 20px;">${realyUrl}</span>`);
+      toast('图片上传成功')
     })
   }
 }
 
 function ajax(imgData) {
   let imgstr = imgData.split('base64,')[1]
-  return new Promise((resolve) => {
-    $.ajax({
+  return new Promise((resolve, reject) => {
+    let timer = setTimeout(() => {
+      ajax.abort();
+      toast('上传超时', true);
+      reject()
+    }, 5000)
+    let ajax = $.ajax({
       //请求方式
       type : "POST",
       //请求的媒体类型
@@ -72,12 +83,15 @@ function ajax(imgData) {
       }),
       //请求成功
       success : function(result) {
-          resolve(result)
+        timer = null;
+        resolve(result)
       },
       //请求失败，包含具体的错误信息
       error : function(e){
+        timer = null;
         console.log('e.status', e.status);
         console.log('e.responseText', e.responseText);
+        toast(e.responseText || '图片上传失败', false)
       }
     });
   })
@@ -116,19 +130,37 @@ function randomPrefix() {
   return prefix.replace('x', random);
 }
 
-function toast(msg, warn) {
+function toast(msg, warn = false) {
   let e = document.createElement("span");
   e.style.position = "fixed";
   e.style.top = '10%';
   e.style.left = '50%';
   e.style.padding = "5px 20px";
   e.style.borderRadius = "5px";
-  e.style.backgroundColor = warn ? 'yellow' : 'rgba(0, 0, 0, .6)';
+  e.style.backgroundColor = warn ? 'rgba(255,69,0,.8)' : 'rgba(0, 0, 0, .6)';
   e.style.transition = 'all .2s';
   e.style.color = '#fff';
   e.innerHTML = msg;
+  e.style.display = 'none'
   document.body.appendChild(e);
+  e.style.display = 'block'
   setTimeout(() => {
+    e.style.display = 'none'
     document.body.removeChild(e);
   }, 1000)
+}
+
+function getBase64ImgSzie(base64Str) {
+  let str = base64Str.split('base64,')[1]
+  var equalIndex = str.indexOf('=');
+  if(str.indexOf('=')>0) {
+      str=str.substring(0, equalIndex);
+  }
+  var strLength=str.length;
+  var fileLength=parseInt(strLength-(strLength/8)*2);
+  // 由字节转换为MB
+  var size = "";
+  size = (fileLength/1024).toFixed(2);
+  console.log(size)
+  return parseInt(size);
 }
