@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>我们一起学习CSS image-set()</title>
+    <style>
+      .image-set-by-zxx {
+        width: 128px;
+        height: 96px;
+        background: url(./image-set-not.jpg);
+        background: -webkit-image-set(
+          url(../201410/mm-width-128px.jpg) 1x,
+          url(../201410/mm-width-256px.jpg) 2x,
+          url(../201410/mm-width-512px.jpg) 3x
+        );
+        background: image-set(
+          url(../201410/mm-width-128px.jpg) 1x,
+          url(../201410/mm-width-256px.jpg) 2x,
+          url(../201410/mm-width-512px.jpg) 3x
+        );
+        background-size: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <h4>加载的图片是？</h4>
+    <div class="image-set-by-zxx"></div>
+  </body>
+</html>

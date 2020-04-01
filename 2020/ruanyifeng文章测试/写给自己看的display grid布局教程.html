@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>写给自己看的display: grid布局教程</title>
+    <style>
+      .container {
+        width: 500px;
+        height: 500px;
+        display: grid;
+        background-color: black;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-areas:
+          'a a a'
+          'b c c'
+          'b c c'
+          'd d d';
+      }
+      .putao {
+        background-color: red;
+        grid-area: a;
+      }
+      .longxia {
+        background-color: green;
+        grid-area: b;
+      }
+      .yangyu {
+        background-color: blue;
+        grid-area: c;
+      }
+      .xigua {
+        background-color: yellow;
+        grid-area: d;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="putao"></div>
+      <div class="longxia"></div>
+      <div class="yangyu"></div>
+      <div class="xigua"></div>
+    </div>
+  </body>
+</html>

@@ -36,12 +36,16 @@ function updateImg(src, $li) {
     canvas.height = image.height;
     let ctx = canvas.getContext('2d');
     ctx.drawImage(image, 0, 0, image.width, image.height);
-    let bgBase64Data = canvas.toDataURL("image/png", 0.5);
+    let encoderOptions = 0.5;
+    let bgBase64Data = canvas.toDataURL("image/jpeg", encoderOptions);
+    console.log('aaaaaaaaaaaaaaa encoderOptions', encoderOptions)
+    
     // if(getBase64ImgSzie(bgBase64Data) > 200) {
     //   toast('图片不能大于200k', warn)
     //   return
     // }
     // return
+    getBase64ImgSzie(bgBase64Data)
     ajax(bgBase64Data).then((url) => {
       let realyUrl = randomPrefix() + url;
       let copyButton = $('<button style="margin-left: 20px;" class="copy">一键复制</button>')
@@ -152,15 +156,11 @@ function toast(msg, warn = false) {
 
 function getBase64ImgSzie(base64Str) {
   let str = base64Str.split('base64,')[1]
-  var equalIndex = str.indexOf('=');
-  if(str.indexOf('=')>0) {
-      str=str.substring(0, equalIndex);
-  }
-  var strLength=str.length;
-  var fileLength=parseInt(strLength-(strLength/8)*2);
+  var strLength = str.length;
+  var fileLength = parseInt(strLength - (strLength / 8) * 2);
   // 由字节转换为MB
   var size = "";
   size = (fileLength/1024).toFixed(2);
-  console.log(size)
+  console.log('I am size', size)
   return parseInt(size);
 }

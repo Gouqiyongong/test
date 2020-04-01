@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS any-hover any-pointer media查询与交互体验提升</title>
+  <style>
+    @media (any-hover: none) {
+      .example-zxx {
+        text-decoration: none;
+        background-color: #ffffe0;
+      }
+    }
+    @media (any-hover: hover) {
+      .example-zxx {
+        text-decoration: underline;
+      }
+    }
+    @media (pointer: coarse) {
+      input[type="checkbox"] {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#">CSS any-hover any-pointer media查询与交互体验提升</a>
+</body>
+</html>

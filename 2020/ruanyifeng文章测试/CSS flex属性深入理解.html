@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>CSS flex属性深入理解</title>
+    <style>
+      .container {
+        /* 范闲：来，家产分配开始了~ */
+        display: flex;
+      }
+      .zhang {
+        /* 老大不会争夺多余财产，但是会在财产不足时候分出老二老三分出的2倍的财产，这是作为老大应有的姿态 */
+        flex: 0 2 100px;
+      }
+      .xin,
+      .xu {
+        /* 老二和老三不会争夺多余财产，但是会在财产不足时候分出部分财产，照应老四和老幺 
+          这里也可以直接写成：flex: 100px*/
+        flex: 0 1 100px;
+      }
+      .shuai {
+        /* 老四会争夺多余财产，且会在财产不足时候分出财产，感谢哥哥们的照顾，不过我的保底家底也小 */
+        flex: 3 0 20px;
+      }
+      .ge {
+        /* 老五会争夺多余财产，不过比例比哥哥少一点，且会在财产不足时候分出财产，感谢哥哥们的照顾 */
+        flex: 2 0 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 范张，范鑫和范旭每人100万固定家产，范帅和范哥则20万保底家产。如果范闲归西那天家产还有富余，
+    范帅和范哥按照3:2比例分配；如果没有剩余财产，则范张，范鑫和范旭三位兄长按照2:1:1的比例给两
+    人匀20万保底家产。 -->
+
+    <div class="container">
+      <item clas="zhang">范张</item>
+      <item clas="xin">范鑫</item>
+      <item clas="xu">范旭</item>
+      <item clas="shuai">范帅</item>
+      <item clas="ge">范哥</item>
+    </div>
+  </body>
+</html>

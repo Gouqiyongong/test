@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>如何使用JS把相对地址变成绝对地址？</title>
+</head>
+<body>
+  <script>
+    // var myUrl = new URL('https://www.zhangxinxu.com/wordpress/?p=9227');
+    // // 可以方便获得URL地址的各个组成部分
+    // console.log('url', myUrl);
+    // console.log('host', myUrl.host);
+    // console.log('path', myUrl.pathname);
+    // console.log('search', myUrl.search);
+    // var myUrl = new URL("../images/zhangxinxu.png", "https://images.zhangxinxu.com/blog/css/");
+    // console.log(myUrl.href);
+
+    /**
+     * @description 相对路径转换成绝对路径方法
+     * @author zhangxinxu(.com)
+    */
+    var relative2absolute = function (url, base) {
+        if (!base) {
+            base = location.protocol + location.host;
+        }
+        return new URL(url, base).href;
+    }
+
+    /**
+     * @description 相对地址绝对地址转换方法
+     * @author zhangxinxu(.com)
+    */
+    var relative2absolute_2 = function (url, base) {
+        var ele = document.createElement('a');
+        ele.href = (base || '') + url;
+        return eleLink.href;
+    }
+  </script>
+</body>
+</html>

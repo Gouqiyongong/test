@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>你用的那些CSS转场动画可以换一换了</title>
+    <style>
+      zxx-slide {
+        display: block;
+        width: 250px;
+        height: 186px;
+        position: relative;
+      }
+      .zxx-slide-a {
+        position: absolute;
+        display: none;
+      }
+      .zxx-slide-a.in {
+        z-index: 1;
+      }
+      .zxx-slide-img {
+        display: block;
+        width: 250px;
+        height: 186px;
+      }
+      .zxx-slide-index-x {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 10px;
+        text-align: center;
+        font-size: 0;
+        z-index: 1;
+      }
+      .zxx-slide-index {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        border: 5px solid transparent;
+        background-color: rgba(0, 0, 0, 0.6);
+        background-clip: content-box;
+        border-radius: 50%;
+        transition: background-color 0.3s;
+        cursor: pointer;
+      }
+      .zxx-slide-index.active {
+        background-color: rgba(255, 0, 0, 0.9);
+      }
+      /* 动画细节在这里 */
+      zxx-slide .in {
+        animation: clipCircleIn 0.6s;
+      }
+      @keyframes clipCircleIn {
+        0% {
+          -webkit-clip-path: circle(0 at 50% 50%);
+          clip-path: circle(0 at 50% 50%);
+        }
+        100% {
+          -webkit-clip-path: circle(200px at 50% 50%);
+          clip-path: circle(200px at 50% 50%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a
+      href="https://www.zhangxinxu.com/wordpress/2019/05/css-transfer-animation/"
+      >文章地址</a
+    >
+    <zxx-slide>
+      <div class="zxx-slide-x">
+        <a href class="zxx-slide-a" style="display: block;"
+          ><img class="zxx-slide-img" src="https://image.zhangxinxu.com/image/study/p/s500/ps1.jpg"
+        /></a>
+        <a href class="zxx-slide-a"
+          ><img class="zxx-slide-img" src="https://image.zhangxinxu.com/image/study/p/s500/ps2.jpg"
+        /></a>
+        <a href class="zxx-slide-a"
+          ><img class="zxx-slide-img" src="https://image.zhangxinxu.com/image/study/p/s500/ps3.jpg"
+        /></a>
+        <a href class="zxx-slide-a"
+          ><img class="zxx-slide-img" src="https://image.zhangxinxu.com/image/study/p/s500/ps4.jpg"
+        /></a>
+      </div>
+      <div class="zxx-slide-index-x">
+        <button class="zxx-slide-index active"></button>
+        <button class="zxx-slide-index"></button>
+        <button class="zxx-slide-index"></button>
+        <button class="zxx-slide-index"></button>
+      </div>
+    </zxx-slide>
+    <script src="https://www.zhangxinxu.com/study/201905/zxx-slide-demo.js"></script>
+  </body>
+</html>

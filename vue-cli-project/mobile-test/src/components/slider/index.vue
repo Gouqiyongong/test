@@ -19,12 +19,16 @@
         @touchend="onTouchEnd()"
         class="slider-btnwrap">
         <div class="slider-btn">{{value}}</div>
-      </div>  
+      </div> 
     </div>
   </div>
 </template>
 <script>
 import { setTimeout } from 'timers';
+function 我的() {
+  var a='a';
+}
+我的();
 export default {
   props: {
     value: {

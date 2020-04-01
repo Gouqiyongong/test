@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>CSS backdrop-filter简介与苹果iOS毛玻璃效果</title>
+    <style>
+      /* 实验功能  尚需考究 */
+      .some-class-zxx {
+        background-color: #fff;
+      }
+      @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+        .some-class-zxx {
+          background: hsla(0, 0%, 100%, 0.75);
+          -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+        }
+      }
+    </style>
+  </head>
+  <body></body>
+</html>

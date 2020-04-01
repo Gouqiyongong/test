@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>写给自己看的CSS shapes布局教程</title>
+    <style>
+      .shape {
+        float: left;
+        width: 60px;
+        height: 60px;
+        padding: 10px;
+        margin: 10px;
+        border: 10px solid;
+        border-radius: 50%;
+        background-color: currentColor;
+        background-clip: content-box;
+        color: #cd0000;
+        shape-outside: none; /* 或margin-box，border-box，padding-box，content-box */
+      }
+    </style>
+  </head>
+  <body>
+    <span class="shape"></span>
+    <p>在CSS Shapes问世之前...</p>
+    <a href="https://www.zhangxinxu.com/wordpress/2019/02/css-css3-shapes/">文章链接</a>
+  </body>
+</html>

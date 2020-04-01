@@ -46,7 +46,6 @@ module.exports = {
   },
   module: {
     rules: [
-      ...(config.dev.useEslint ? [createLintingRule()] : []),
       {
         test: /\.vue$/,
         loader: 'vue-loader',
@@ -86,8 +85,8 @@ module.exports = {
           appendTsSuffixTo: [/\.vue$/],
           transpileOnly: true,
           // getCustomTransformers: () => ({
-          //   before: [ tsImportPluginFactory(
-          //     {
+            //   before: [ tsImportPluginFactory(
+              //     {
           //       "libraryName": "@zz-common/zz-ui",
           //       "libraryDirectory": "lib",
           //       "style": true
@@ -122,7 +121,8 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
-      }
+      },
+      ...(config.dev.useEslint ? [createLintingRule()] : []),
     ]
   },
   plugins: [

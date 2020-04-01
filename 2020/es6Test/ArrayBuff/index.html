@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script id="worker" type="worker">
+    addEventListener('message', (ms) => {
+      const dr = new Float64Array(ms.data);
+      console.log(2, dr[0], dr.length);
+    })
+  </script>
+  <script>
+    const worker = new Worker(URL.createObjectURL(new Blob([document.getElementById('worker').innerHTML], { type: 'application/javascript' })));
+    const da = new SharedArrayBuffer(1024);
+    const dr = new Float64Array(da);
+    console.log(44, dr[0], dr.length);
+    const obj = {};
+    let a = 1;
+    Object.defineProperty(obj, 'a', {
+      get() {
+        console.log(2, ++a);
+        return this.value
+      },
+      set(v) {
+        console.log(3, v);
+        this.value = v
+      }
+    });
+    dr[0] = obj;
+    console.log(44, dr[0], dr.length);
+    worker.postMessage(obj);
+  </script>
+</body>
+</html>

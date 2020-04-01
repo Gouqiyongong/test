@@ -13,3 +13,6 @@ export default new Router({
     }
   ]
 })
+function name(params) {
+  return '我的'
+}

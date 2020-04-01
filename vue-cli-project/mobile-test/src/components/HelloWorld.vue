@@ -9,9 +9,9 @@
 import slider from './slider/index.vue'
 export default {
   name: 'HelloWorld',
-  data () {
+  data(){
     return {
-      msg: 'Welcome to Your Vue.js App',
+      msg: '一边玩去吧',
       value: 80
     }
   },
