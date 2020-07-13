@@ -73,18 +73,9 @@ function ajax(imgData) {
       //请求的媒体类型
       contentType: "application/json;charset=UTF-8",
       //请求地址
-      url : "https://upload.58cdn.com.cn/json",
+      url : "",
       //数据，json字符串
-      data : JSON.stringify({
-        'Pic-Size': '800*0',
-        'Pic-IsAddWaterPic': true,
-        'Pic-Cut': '0*0*0*0',
-        'Pic-Encoding': 'base64',
-        'Accept-Encoding': 'gzip,deflate',
-        'Pic-Path': '/zhuanzh/',
-        'File-Extensions': 'jpg',
-        'Pic-Data': imgstr
-      }),
+      data :'',
       //请求成功
       success : function(result) {
         timer = null;
