@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <script>
+      let arrData = [
+        {
+          id: 8,
+          name: 'g',
+          parentId: 3,
+        },
+        {
+          id: 3,
+          name: 'a',
+          parentId: 1,
+        },
+        {
+          id: 2,
+          name: 'b',
+          parentId: 2,
+        },
+        {
+          id: 4,
+          name: 'c',
+          parentId: 1,
+        },
+        {
+          id: 5,
+          name: 'd',
+          parentId: 4,
+        },
+        {
+          id: 6,
+          name: 'e',
+          parentId: 4,
+        },
+        {
+          id: 7,
+          name: 'f',
+          parentId: 6,
+        },
+        {
+          id: 9,
+          name: 'h',
+          parentId: 5,
+        },
+        {
+          id: 10,
+          name: 'i',
+          parentId: 6,
+        },
+      ]
+
+      function makeTree(arr) {
+        const tree = []
+        const getParent = (item, t) => {
+          let result;
+          for (let i = 0, len = t.length; i < len; i++) {
+            const tItem = t[i];
+            if (tItem.id === item.parentId) {
+              result = tItem;
+              break;
+            }
+            if (tItem.children && tItem.children.length) {
+              result = getParent(item, tItem.children);
+            }
+          }
+          return result;
+        }
+
+        for (let i = 0; i < arr.length; i++) {
+          const parent = getParent(arr[i], tree)
+          const children =
+            !parent ? tree : parent.children || (parent.children = [])
+          children.push(arr[i])
+        }
+        return tree
+      }
+
+      function makeTree_1(arr) {
+        arr = arr.sort((a, b) => a.id < b.id ? -1 : 1);
+        const tree = []
+        const getParent = (a, end) => {
+          const nowItem = a[end];
+          for (let i = 0; i < end; i++) {
+            if (a[i].id === nowItem.parentId) {
+              return a[i];
+            }
+          }
+        }
+
+        for (let i = 0; i < arr.length; i++) {
+          const parent = getParent(arr, i)
+          const children =
+            !parent ? tree : parent.children || (parent.children = [])
+          children.push(arr[i])
+        }
+        return tree
+      }
+
+      function makeTree_2(arr) {
+        let tree = [];
+        const treeArr = [];
+        const getParent = (a, item) => {
+          for (let i = 0, len = a.length; i < len; i++) {
+            if (a[i].id === item.parentId) {
+              return a[i];
+            }
+          }
+        }
+
+        while (arr.length) {
+          let i = 0;
+          for (; i < arr.length; i++) {
+            if (arr[i].parentId === 1) {
+              const item = arr.splice(i, 1)[0];
+              tree.push(item);
+              treeArr.push(item);
+              break;
+            }
+            const parent = getParent(treeArr, arr[i]);
+            if (!parent) {
+              continue
+            }
+            const children = parent.children || (parent.children = [])
+            const item = arr.splice(i, 1)[0];
+            children.push(item);
+            treeArr.push(item);
+            break;
+          }
+          if (i === arr.length) {
+            tree = tree.concat(arr);
+            break;
+          }
+        }
+        return tree
+      }
+
+    function createTree3 (arr) {
+      const cache = {}, res = []
+      for (let i = 0; i < arr.length; i++) {
+        cache[arr[i].id] = arr[i]
+      }
+      for (let i = 0; i < arr.length; i++) {
+        let parent = cache[arr[i].parentId]
+        if (parent && parent !== arr[i]) {
+          parent.children = parent.children || []
+          parent.children.push(arr[i])
+        } else {
+          res.push(arr[i])
+        }
+      }
+      return res
+    }
+
+      const tree = createTree3(arrData)
+      console.log(JSON.stringify(tree, '', '\t'))
+      
+      function flatTree (tree) {
+        if (!tree || !Array.isArray(tree) || tree.length === 1) return tree || [];
+        return tree.reduce((a, b) => [...a, b, ...(b && b.children && b.children.length ? flatTree(b.children) : [])], []);
+      }
+      console.log(flatTree(tree));
+    </script>
+  </body>
+</html>
